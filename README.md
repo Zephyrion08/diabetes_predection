@@ -1,7 +1,7 @@
 
 # Diabetes Predection
 
-A project to redict diabetes.
+A project to predict diabetes.
 
 
 ## Requirements
