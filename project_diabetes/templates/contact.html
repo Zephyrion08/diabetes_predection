@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block body %}
+{% load static %}
+<div class="container1">
+  <h1>Contact Us</h1>
+  <form id="contactForm">
+    <div class="form-group1">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group1">
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group1">
+      <label for="message">Your Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+    </div>
+    <button type="submit">Send Message</button>
+  </form>
+  <div id="response"></div>
+</div>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var message = document.getElementById('message').value;
+    
+
+      setTimeout(function() {
+        document.getElementById('response').innerHTML = '<p>Thank you, ' + name + '! Your message has been sent.</p>';
+        document.getElementById('contactForm').reset();
+      }, 1000);
+    });
+    
+  </script>
+  
+  </section>{% endblock body %}

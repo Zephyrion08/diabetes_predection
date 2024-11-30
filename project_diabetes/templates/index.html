@@ -1,0 +1,245 @@
+
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block body %}
+<style>
+  .home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    z-index: 0;
+    margin-top:17px;
+  }
+  
+  .home::before,
+  .home::after{
+   content:'';
+   position: absolute;
+   top:5rem; 
+   right:-6rem;
+   border-radius: 3rem;
+   height:40rem;
+   width:70rem;
+   z-index: -2;
+  
+  }
+  
+  
+  .home::before{
+   top:-7rem;
+   background:#fff;
+   z-index: -1;
+  }
+  
+  .home .image{
+   flex:1 1 39rem;
+  }
+  
+  .home .image img{
+  
+   width:100%;
+  }
+  
+  .home .content{
+   flex:1 1 39rem;
+  }
+  
+  .home .content h3{
+   margin-left: 11px;
+   color:#333;
+   font-size: 1.9rem;
+  }
+  
+  .home .content p{
+   color:#666;
+   font-size: 1.6rem;
+   padding:1rem 0.8rem;
+   margin-right: 1.4rem;
+  }
+  
+  
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    margin:10px 20px;
+  }
+  
+  
+  .btn {
+    color: #6c757d;
+    border: 2px solid #6c757d;
+    padding: 10px 20px;
+    border-radius: 5px; 
+    cursor: pointer; 
+  
+  }
+  
+  
+  .btn:hover {
+    color: #fff; 
+    background-color: #6c757d; 
+  }
+  
+  
+  .btn:focus {
+    outline: none; 
+  }
+  
+  
+  .btn:active {
+    transform: translateY(1px); 
+  }
+
+.steps-section {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+    text-align: left;
+    width:100%;
+}
+
+.container3 {
+    max-width: 960px;
+    margin-left:40px;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.step {
+    flex-basis: 100%;
+    margin-bottom: 40px;
+}
+
+.step-number {
+    background-color: #3f51b5;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    line-height: 50px;
+    font-size: 20px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.step-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+}
+
+</style>
+
+<section class="home" id="home">
+  <div class="content">
+    <h1>Diabetes Prediction System For Female</h1>
+    <p>Our project aims to develop a machine learning model specifically tailored to predict and manage diabetes in females. Leveraging data analytics and predictive algorithms, our system will analyze various health indicators, lifestyle factors, and demographic information to provide personalized insights and recommendations for female patients.</p>
+    <div class="btn-group">
+      <button type="button" class="btn" id="learnMoreBtn">Learn More</button>
+      <button type="button" class="btn" id="symptomsBtn">Symptoms</button>
+      <button type="button" class="btn" id="preventionBtn">Prevention and Treatment</button>
+    </div>
+    <div id="learnMoreInfo" style="display: none;">
+      <!-- Learn More Information -->
+      <p>Diabetes is a chronic, metabolic disease characterized by elevated levels of blood glucose (or blood sugar), which leads over time to serious damage to the heart, blood vessels, eyes, kidneys and nerves. The most common is type 2 diabetes, usually in adults, which occurs when the body becomes resistant to insulin or doesn't make enough insulin. In the past 3 decades the prevalence of type 2 diabetes has risen dramatically inthe countries.</p>
+    </div>
+    <div id="symptomsInfo" style="display: none;">
+      <!-- Symptoms Information -->
+      <p>Symptoms of type 1 diabetes include the need to urinate often, thirst, constant hunger, weight loss, vision changes and fatigue. These symptoms may occur suddenly. Symptoms for type 2 diabetes are generally similar to those of type 1 diabetes but are often less marked. As a result, the disease may be diagnosed several years after onset, after complications have already arisen. For this reason, it is important to be aware of risk factors.</p>
+    </div>
+    <div id="preventionInfo" style="display: none;">
+      <!-- Prevention and Treatment Information -->
+      <p>Type 1 diabetes cannot currently be prevented. Effective approaches are available to prevent type 2 diabetes and to prevent the complications and premature death that can result from all types of diabetes. These include policies and practices across whole populations and within specific settings (school, home, workplace) that contribute to good health for everyone, regardless of whether they have diabetes, such as exercising regularly, eating healthily.</p>
+    </div>
+  </div>
+  <div class="image" ><img src="{% static 'diabetes_image.jpg' %}" alt="Diabetes Image"></div>
+</section>
+
+
+<script>
+  document.getElementById('learnMoreBtn').addEventListener('click', function() {
+    document.getElementById('learnMoreInfo').style.display = 'block';
+    document.getElementById('symptomsInfo').style.display = 'none';
+    document.getElementById('preventionInfo').style.display = 'none';
+  });
+
+  document.getElementById('symptomsBtn').addEventListener('click', function() {
+    document.getElementById('learnMoreInfo').style.display = 'none';
+    document.getElementById('symptomsInfo').style.display = 'block';
+    document.getElementById('preventionInfo').style.display = 'none';
+  });
+
+  document.getElementById('preventionBtn').addEventListener('click', function() {
+    document.getElementById('learnMoreInfo').style.display = 'none';
+    document.getElementById('symptomsInfo').style.display = 'none';
+    document.getElementById('preventionInfo').style.display = 'block';
+  });
+</script>
+
+<section class="steps-section">
+        <div class="container3">
+            <h2 class="section-title">Steps for Prediction</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h2>Get Medical Test Report</h2>
+                        <p>Obtain your medical test report from a healthcare provider or clinic. This report should include relevant data such as blood sugar levels, insulin levels, cholesterol levels, and other pertinent information related to diabetes diagnosis.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h2>Visit Our Site</h2>
+                        <p>Navigate to the website or platform that offers a diabetes prediction tool.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h2>Click to Prediction</h2>
+                        <p>Once on the website or application, locate the section or feature for diabetes prediction and click on it.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h2>Input Information in Input Form</h2>
+                        <p>Fill out the input form with relevant information from your medical test report.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h2>Click the Predict Button to Get Result</h2>
+                        <p>After filling out the input form, click on the "Predict" or "Get Results" button to obtain your diabetes prediction result.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock body %}

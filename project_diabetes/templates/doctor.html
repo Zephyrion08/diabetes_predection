@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}Consult a Doctor{% endblock %}
+
+{% block body %}
+<style>
+/* General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Doctor Page Container */
+.doctor-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Title for the Doctor Consultation Page */
+.doctor-page h1 {
+    font-size: 36px;
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Subtitle for Doctor Consultation Instructions */
+.doctor-page h3 {
+    font-size: 20px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Doctor Consultation Form Styling */
+.doctor-consult-form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Form Labels and Input Fields */
+.doctor-consult-form label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.doctor-consult-form input,
+.doctor-consult-form select,
+.doctor-consult-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus Effect on Input Fields */
+.doctor-consult-form input:focus,
+.doctor-consult-form select:focus,
+.doctor-consult-form textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Submit Button Styling */
+.doctor-consult-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.doctor-consult-form button:hover {
+    background-color: #45a049;
+}
+
+/* Confirmation Message Styling */
+.doctor-consult-message {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    margin-top: 2rem;
+}
+
+.doctor-consult-message.success {
+    color: green;
+}
+
+.doctor-consult-message.error {
+    color: red;
+}
+
+/* Responsive Design for Smaller Screens */
+@media(max-width: 768px) {
+    .doctor-page h1 {
+        font-size: 28px;
+    }
+
+    .doctor-consult-form {
+        padding: 1.5rem;
+    }
+}
+</style>
+
+<div class="doctor-page">
+    <h1>Consult a Doctor</h1>
+    <h3>Please fill in your details to consult a doctor.</h3>
+
+    <div class="doctor-consult-form">
+        <form method="POST" action="/submit-doctor-consult">
+            {% csrf_token %}
+
+            <label for="name">Full Name:</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                value="{{ name }}" 
+                required
+            >
+
+            <label for="email">Email:</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                value="{{ email }}" 
+                required
+            >
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="symptoms">Describe your symptoms:</label>
+            <textarea id="symptoms" name="symptoms" rows="4" required></textarea>
+
+            <label for="preferred_doctor">Preferred Doctor (Optional):</label>
+            <select id="preferred_doctor" name="preferred_doctor">
+                <option value="">Select a doctor</option>
+                <option value="doctor_1">Dr. Smith</option>
+                <option value="doctor_2">Dr. Johnson</option>
+                <option value="doctor_3">Dr. Brown</option>
+            </select>
+
+            <button type="submit">Submit Consultation</button>
+        </form>
+    </div>
+
+    <div class="doctor-consult-message">
+        {% if success %}
+            <p class="success">Your consultation request has been submitted successfully. We will contact you shortly.</p>
+        {% elif error %}
+            <p class="error">There was an error submitting your request. Please try again later.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
